@@ -379,12 +379,14 @@ module Svn2Git
 
     def fix_trunk
       trunk = @remote.find { |b| b.strip == 'trunk' }
+      main_branch = run_command("git config init.defaultbranch") # not perfect but good enough
+
       if trunk && ! @options[:rebase]
         run_command("git checkout svn/trunk")
-        run_command("git branch -D master")
-        run_command("git checkout -f -b master")
+        run_command("git branch -D \"#{main_branch}\"")
+        run_command("git checkout -f -b \"#{main_branch}\"")
       else
-        run_command("git checkout -f master")
+        run_command("git checkout -f \"#{main_branch}\"")
       end
     end
 
