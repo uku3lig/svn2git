@@ -361,16 +361,6 @@ module Svn2Git
             @cannot_setup_tracking_information = true
             run_command(Svn2Git::Migration.checkout_svn_branch(branch))
           else
-            unless @legacy_svn_branch_tracking_message_displayed
-              warn '*' * 68
-              warn "svn2git warning: Tracking remote SVN branches is deprecated."
-              warn "In a future release local branches will be created without tracking."
-              warn "If you must resync your branches, run: svn2git --rebase"
-              warn '*' * 68
-            end
-
-            @legacy_svn_branch_tracking_message_displayed = true
-
             run_command("git checkout \"#{branch}\"")
           end
         end
