@@ -348,7 +348,7 @@ module Svn2Git
         if @cannot_setup_tracking_information
           run_command(Svn2Git::Migration.checkout_svn_branch(branch))
         else
-          status = run_command("git branch --track \"#{branch}\" \"remotes/svn/#{branch}\"", false)
+          status = run_command("git branch \"#{branch}\" \"remotes/svn/#{branch}\"", false)
 
           # As of git 1.8.3.2, tracking information cannot be set up for remote SVN branches:
           # http://git.661346.n2.nabble.com/git-svn-Use-prefix-by-default-td7594288.html#a7597159
