@@ -379,7 +379,7 @@ module Svn2Git
 
     def fix_trunk
       trunk = @remote.find { |b| b.strip == 'trunk' }
-      main_branch = run_command("git config init.defaultbranch") # not perfect but good enough
+      main_branch = run_command("git config init.defaultbranch").strip # not perfect but good enough
 
       if trunk && ! @options[:rebase]
         run_command("git checkout svn/trunk")
